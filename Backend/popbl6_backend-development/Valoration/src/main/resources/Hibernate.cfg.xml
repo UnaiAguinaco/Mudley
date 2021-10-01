@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation=
+  "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+   http://www.springframework.org/schema/util
+   http://www.springframework.org/schema/util/spring-util.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/tx
+   http://www.springframework.org/schema/tx/spring-tx.xsd
+   http://www.springframework.org/schema/jdbc
+   http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+    <util:properties id="hibernateProperties" location="classpath:hibernate-#{ systemProperties['env'] }.properties"/>
+
+    <context:property-placeholder properties-ref="hibernateProperties" ignore-unresolvable="true"/>
+
+    <jdbc:initialize-database data-source="dataSourceTest">
+        <jdbc:script location="classpath:sql/gash.sql"/>
+        <jdbc:script location="classpath:sql/USERS.sql"/>
+    </jdbc:initialize-database>
+
+    <bean name="dataSourceTest"
+          class="org.apache.commons.dbcp.BasicDataSource"
+          p:driverClassName="${db.connection.driver}"
+          p:url="${db.connection.url}"
+          p:username="${db.connection.username}"
+          p:password="${db.connection.password}"/>
+
+    <bean name="sessionFactoryTest"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+          p:dataSource-ref="dataSourceTest"
+          p:hibernateProperties-ref="hibernateProperties"
+          p:mappingResources-ref="mappingList"/>
+
+    <bean name="transactionManagerTest"
+ class="org.springframework.orm.hibernate5.HibernateTransactionManager"
+          p:sessionFactory-ref="sessionFactoryTest"/>
+
+    <util:list id="mappingList">
+        <value>orm/User.hbm.xml</value>
+        <!--<value>orm/Revision.hbm.xml</value>-->
+    </util:list>
+
+    <tx:annotation-driven/>
+
+</beans>

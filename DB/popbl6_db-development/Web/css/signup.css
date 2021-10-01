@@ -1,0 +1,163 @@
+body {
+  overflow-y: auto;
+}
+
+.loginInputs {
+  grid-template-rows: repeat(5, 1fr) 30% repeat(3, 1fr);
+}
+.loginInputs div {
+  padding: 1rem 0;
+}
+.loginTitle {
+  align-self: center;
+}
+.login {
+  grid-template-rows: 10% 75% 15%;
+  width: 70%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1rem;
+}
+main {
+  height: auto;
+  flex-direction: column;
+  justify-content: start;
+}
+.loginSocial {
+  margin-top: 0;
+  align-self: center;
+}
+.loginForm {
+  grid-template-rows: 85% 1fr;
+}
+#nombre {
+  width: 100%;
+}
+#email {
+  width: 100%;
+}
+.pass {
+  display: flex;
+  justify-content: row;
+}
+.pass input {
+  align-self: start;
+}
+.select {
+  text-align: start;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+input[type="checkbox"] {
+  margin-left: 1rem;
+  height: 2rem;
+  width: 2rem;
+}
+
+.loginBtn {
+  align-self: center;
+}
+.loginBtn a {
+  color: white;
+}
+.confirm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.ubicacion {
+  display: flex;
+  flex-direction: row;
+}
+#desc {
+  width: 100%;
+}
+.desc {
+  padding-top: 5rem !important;
+}
+
+.ubicacion input {
+  width: 90%;
+}
+
+.pais,
+.cv,
+.localidad,
+.url,
+.desc {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: flex-end;
+}
+
+.cv {
+  justify-content: flex-end;
+}
+
+.groupAddData {
+  display: grid;
+  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: 30% 30% 1fr;
+}
+
+.presupuesto {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+#presupuesto {
+  width: 90%;
+}
+
+#url {
+  width: 100%;
+}
+
+#desc {
+  height: 100%;
+  background: none;
+  border: 0;
+  font-size: 2rem;
+  color: var(--textColor);
+  user-select: none;
+  border-bottom: 2px solid var(--borderColor);
+  resize: none;
+  font-family: "Poppins", sans-serif;
+}
+
+select {
+  background: none;
+  border: none;
+  border-bottom: 2px solid var(--borderColor);
+  font-size: 3rem;
+  color: var(--textColor);
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 100%;
+}
+select option {
+  color: var(--secondaryColor);
+  font-size: 2rem;
+}
+
+@media (max-width: 1000px) {
+  #pass {
+    width: 100%;
+  }
+  #rpass {
+    width: 100%;
+  }
+}

@@ -1,0 +1,265 @@
+main {
+  height: auto;
+}
+body {
+  overflow: auto;
+}
+
+textarea {
+  font-family: "Poppins", sans-serif;
+  background: none;
+  border: 0;
+  font-size: 2rem;
+  color: var(--textColor);
+  user-select: none;
+  border-bottom: 2px solid var(--borderColor);
+  resize: none;
+}
+
+::placeholder {
+  font-size: 2rem;
+  color: var(--textColor);
+}
+
+input {
+  background: none;
+  border: 0;
+  font-size: 2rem;
+  width: 40%;
+  color: var(--textColor);
+  user-select: none;
+  border-bottom: 2px solid var(--borderColor);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+form,
+section {
+  padding: 0 5rem 5rem;
+  color: var(--textColor);
+}
+select {
+  background: none;
+  border: none;
+  border-bottom: 2px solid var(--borderColor);
+  font-size: 2rem;
+  color: var(--textColor);
+}
+select option {
+  color: var(--secondaryColor);
+  font-size: 2rem;
+}
+.mainData {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 10% 1fr;
+  grid-row-gap: 3rem;
+}
+
+.topData {
+  padding-top: 5rem;
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 4rem;
+}
+.image img {
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+}
+.imageButton {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: white;
+}
+.imageButton > div {
+  padding: 1rem 2rem;
+  background-color: var(--secondaryColor);
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.data {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.data input {
+  font-size: 2rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+.data p {
+  padding-bottom: 1rem;
+}
+.data div {
+  height: fit-content;
+  padding-bottom: 2rem;
+}
+.localidad div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 2rem;
+}
+.other {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 2rem;
+}
+
+.descData {
+  font-size: 2rem;
+}
+.descData p {
+  padding-bottom: 0.5rem;
+}
+.descData textarea {
+  width: 100%;
+  height: 15vh;
+  font-size: 2rem;
+  padding: 0.5rem;
+  resize: none;
+}
+
+.advanced {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--textColor);
+}
+.advanced p {
+  padding-right: 1rem;
+}
+
+.advancedButton {
+  padding: 1rem 2rem;
+  background-color: var(--secondaryColor);
+  color: white;
+}
+.calendarSave p {
+  cursor: pointer;
+  padding: 1rem 2rem;
+  background-color: var(--secondaryColor);
+  color: white;
+  width: fit-content;
+  font-size: 1.5rem;
+}
+.calendarSaved {
+  text-align: center;
+  margin-top: 1rem;
+  color: green;
+  font-size: 1.5rem;
+}
+.calendarSave {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+.buttons > div {
+  width: fit-content;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 3rem;
+}
+.buttons > div > div,
+.buttons > div > a {
+  font-size: 2rem;
+  padding: 1rem 2rem;
+  background-color: var(--secondaryColor);
+  color: white;
+}
+
+.advancedSettings {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 5rem 3rem;
+}
+.advancedData {
+  font-size: 2rem;
+  color: var(--textColor);
+  width: 60%;
+}
+.advancedData div {
+  padding-bottom: 3rem;
+}
+.advancedData p {
+  padding-bottom: 0.5rem;
+}
+.advancedData input {
+  font-size: 2rem;
+  padding: 0.7rem;
+  color: var(--textColor);
+  width: 100%;
+}
+
+.selected {
+  color: red !important;
+}
+.imageButton a {
+  color: white;
+}
+.day {
+  user-select: none;
+}
+#upload {
+  border: none;
+  width: 100%;
+}
+.changeFoto {
+  height: auto;
+  padding-bottom: 4rem;
+}
+.changeFoto form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+.foto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.changeFoto img {
+  width: 40%;
+}
+.mainFoto {
+  height: 85%;
+}
+@media (max-width: 1000px) {
+  .imageButton i {
+    display: none;
+  }
+  .changeFoto img {
+    width: 50%;
+  }
+}
+
+@media (max-width: 700px) {
+  .topData {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .changeFoto img {
+    width: 70%;
+  }
+}

@@ -1,0 +1,24 @@
+main {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+body {
+  background-image: none;
+}
+.txt {
+  color: var(--textColor);
+  font-size: 3rem;
+  padding-bottom: 1rem;
+}
+
+.return {
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  background-color: var(--secondaryColor);
+  color: white;
+  border-radius: 34px;
+}

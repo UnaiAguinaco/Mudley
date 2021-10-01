@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --mainColor: #1c1b29;
+  --secondaryColor: #292841;
+  --textColor: white;
+  --borderColor: white;
+  --backImg: url(../img/fondoOscuro5.jpg);
+}
+a {
+  color: var(--textColor);
+  text-decoration: none;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--mainColor);
+  transition: background-color 1s ease;
+}
+nav {
+  padding: 0 2rem;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondaryColor);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #45436d;
+}
+
+.hide {
+  display: none !important;
+}

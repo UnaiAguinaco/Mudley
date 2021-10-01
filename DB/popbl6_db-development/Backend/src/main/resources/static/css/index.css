@@ -1,0 +1,171 @@
+body {
+  height: 100vh;
+  background-image: var(--backImg);
+  background-size: cover;
+  background-repeat: repeat;
+  overflow: hidden;
+  transition: background-image 0.4s ease-in-out;
+}
+/*-------------NAV------------------*/
+nav {
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--textColor);
+}
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.logo img {
+  height: 50%;
+}
+.logoName {
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+.logoName a {
+  font-size: 2.5rem;
+  color: var(--textColor);
+}
+.navOptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+.navAccount {
+  align-self: center;
+  display: flex;
+  font-size: 2rem;
+  padding: 0 2rem;
+}
+.navAccount a {
+  color: var(--textColor);
+}
+.colorMode {
+  align-self: center;
+  display: flex;
+}
+.colorMode i {
+  align-self: center;
+  padding: 0 0.5rem;
+  height: 100%;
+}
+.goChat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* The slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 25px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  border: 2px solid var(--borderColor);
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 4px;
+  bottom: 3px;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50px;
+
+  background: var(--borderColor);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/*-----Body------*/
+main {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: var(--textColor);
+}
+.title h1 {
+  font-size: 10rem;
+}
+
+.title p {
+  font-size: 3rem;
+}
+
+.wrapper {
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.typing {
+  width: 32ch;
+  animation: typing 3s steps(32), blink 0.5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/*-------footer---------*/
+footer {
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  color: var(--textColor);
+}
+footer p {
+  align-self: flex-end;
+  padding-bottom: 0.5rem;
+}

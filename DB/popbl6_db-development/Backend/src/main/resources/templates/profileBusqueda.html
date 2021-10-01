@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <link th:href="@{/css/global.css}" rel="stylesheet" />
+  <link th:href="@{/css/index.css}" rel="stylesheet" />
+  <link th:href="@{/css/mainMenu.css}" rel="stylesheet" />
+  <link th:href="@{/css/profile.css}" rel="stylesheet" />
+  <link th:href="@{/css/calendar.css}" rel="stylesheet" />
+  <link th:href="@{/css/calendarPopUp.css}" rel="stylesheet" />
+  <link th:href="@{/css/device.css}" rel="stylesheet" />
+
+
+
+  <title>Mudley</title>
+</head>
+
+<body>
+  <nav th:replace="fragments/navLogged :: navLogged"></nav>
+
+  <main>
+    <section class="rightSec">
+      <div class="profileImg"><img th:src="${user.image}" alt="" srcset="">
+
+      </div>
+      <div class="profileContact">
+        <a th:href="${user.link}" target="_blank">
+          <div class="cntcSpotify">
+            <i class="fab fa-spotify fa-2x"></i>
+            <p>Perfil de Spotify</p>
+          </div>
+        </a>
+        <div class="cntcEmail">
+          <i class="far fa-envelope fa-2x"></i>
+          <p>Correo electrónico</p>
+        </div>
+        <div class="cntcCalendar"><i class="far fa-calendar fa-2x"></i>
+          <p>Ver disponibilidad</p>
+        </div>
+      </div>
+    </section>
+    <section class="leftSec">
+      <div class="profileName">
+        <p th:text="${user.name}">Nombre del grupo o artista</p>
+      </div>
+      <div class="profileAtributes">
+        <p th:text="${'Genero: ' + user.genderId.name}">Genero: Genero musical</p>
+        <p th:text="${'Localidad: ' + user.city + ', '+user.country}">Localidad: Localidad</p>
+        <p th:text="${'Presupuesto: ' + user.budget + '€'}">Presupuesto: xxxx€</p>
+      </div>
+      <div class="profileDesc">
+        <p>Descripción: </p>
+        <p th:text="${user.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam congue
+          venenatis scelerisque. Suspendisse
+          potenti.
+          Maecenas purus orci, cursus pulvinar dapibus quis, iaculis in lectus. Donec eleifend ex vel dui dignissim
+          lobortis.
+          Curabitur convallis tempus magna vitae tincidunt. Integer id rhoncus nunc, vitae dapibus mi. Proin sit amet
+          massa ut mi
+          pellentesque sodales a et neque. Quisque vitae pharetra massa. Vivamus aliquam felis non sodales venenatis.
+          Curabitur
+          non finibus tellus. Sed interdum velit ut rhoncus fringilla.</p>
+      </div>
+      <div class="profileBottom">
+        <div class="rating">
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+          </div>
+          <p class="ratingKop">(23)</p>
+        </div>
+
+        <a sec:authorize="hasAuthority('ORGANIZACION')" th:href="@{'/newChat'+${user.id}}">
+          <div class="bottomButon"><i class="far fa-paper-plane"></i>Enviar mensaje</div>
+        </a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>©GRUPO 5. TODOS LOS DERECHOS RESERVADOS</p>
+  </footer>
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <p sec:authorize="hasAuthority('ARTISTA')" class="fechas hide" th:text="${fechas}"></p>
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="calendarContainer">
+        <div id="calendar">
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+<script src="js/colorMode.js"></script>
+<script sec:authorize="hasAuthority('ARTISTA')" src=" js/showCalendar.js"></script>
+<script sec:authorize="hasAuthority('ARTISTA')" src="js/calendarShow.js"></script>
+
+</html>

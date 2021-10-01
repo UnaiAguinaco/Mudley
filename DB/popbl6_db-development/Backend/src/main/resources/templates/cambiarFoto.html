@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+  <link th:href="@{/css/global.css}" rel="stylesheet" />
+  <link th:href="@{/css/index.css}" rel="stylesheet" />
+  <link th:href="@{/css/mainMenu.css}" rel="stylesheet" />
+  <link th:href="@{/css/ajustes.css}" rel="stylesheet" />
+  <link th:href="@{/css/device.css}" rel="stylesheet" />
+
+  <title>Mudley</title>
+</head>
+
+<body>
+  <nav th:replace="fragments/navLogged :: navLogged"></nav>
+  <main class="mainFoto">
+    <section class="changeFoto">
+      <form th:action="@{/fotoCambiada}" method="post" enctype="multipart/form-data" class="cambiarFoto"
+        id="cambiarFoto">
+        <div class="foto">
+          <img th:src="${user.image}" alt="" srcset="">
+        </div>
+        <div class="cambiar">
+          <input id="upload" type="file" name="file" />
+        </div>
+
+      </form>
+    </section>
+    <section class="buttons">
+      <div>
+        <a th:href="@{/ajustes}" class="cnlButton">
+          <p>Cancelar</p>
+        </a>
+        <div onclick="submitForm()" class="saveButton">
+          <p>Guardar</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>©GRUPO 5. TODOS LOS DERECHOS RESERVADOS</p>
+  </footer>
+</body>
+<script src="js/colorMode.js"></script>
+<!--<script src="js/buscar.js"></script>-->
+<script>
+  function submitForm() {
+    document.getElementById("cambiarFoto").submit();
+  }
+</script>
+
+</html>

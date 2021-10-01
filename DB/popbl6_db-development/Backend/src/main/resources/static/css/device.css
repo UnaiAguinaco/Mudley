@@ -1,0 +1,16 @@
+@media (max-width: 1400px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media (max-width: 1200px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 6px;
+  }
+}

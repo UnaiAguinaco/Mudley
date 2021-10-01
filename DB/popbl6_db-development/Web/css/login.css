@@ -1,0 +1,145 @@
+body {
+  background-image: none;
+}
+main {
+  flex-direction: row;
+}
+section {
+  width: 50vw;
+  align-self: center;
+}
+.login {
+  height: 80%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+
+  grid-template-rows: 10% 70% 20%;
+}
+.loginTitle {
+  align-self: end;
+  text-align: center;
+  font-size: 4rem;
+  color: var(--textColor);
+}
+.loginForm {
+  align-self: center;
+  text-align: center;
+  font-size: 4rem;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: 70% 30%;
+  color: var(--textColor);
+}
+.loginInputs {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+::placeholder {
+  font-size: 3rem;
+  color: var(--textColor);
+}
+.user {
+  align-self: center;
+}
+.pass {
+  align-self: start;
+}
+
+input {
+  background: none;
+  border: 0;
+  font-size: 3rem;
+  width: 60%;
+  color: var(--textColor);
+  user-select: none;
+  border-bottom: 2px solid var(--borderColor);
+}
+input:focus,
+select:focus {
+  outline: none;
+}
+.loginBtn {
+  align-self: start;
+  text-align: center;
+  font-size: 3rem;
+  color: var(--textColor);
+}
+.loginBtn a {
+  padding: 1rem 2rem;
+  background-color: var(--secondaryColor);
+}
+
+.loginSocial {
+  margin-top: -3rem;
+  align-self: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.social {
+  width: 60px;
+  height: 60px;
+  margin: 0 1rem;
+  color: white;
+  background-color: var(--secondaryColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signUp {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.signUpData {
+  height: 50%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 20% 40% 20%;
+  color: var(--textColor);
+}
+.signUpTitle {
+  font-size: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.signUpTxt {
+  font-size: 1.7rem;
+  padding-top: 2rem;
+}
+
+.signUpBtn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.signUpBtn p {
+  align-self: start;
+}
+
+.signUpBtn a {
+  font-size: 2rem;
+  padding: 1rem 2rem;
+  border: 2px solid var(--borderColor);
+  color: var(--textColor);
+}
+@media (max-width: 900px) {
+  .signUp {
+    display: none;
+  }
+  input {
+    width: 60%;
+  }
+  section {
+    width: 100%;
+    align-self: center;
+  }
+}

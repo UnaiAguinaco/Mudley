@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/mainMenu.css">
+  <link rel="stylesheet" href="css/resultados.css">
+  <link rel="stylesheet" href="css/device.css">
+
+  <title>Mudley</title>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">
+      <img src="img/logoOscuro.png" alt="">
+      <div class="logoName">
+        <a href="index.html">MUDLEY</a>
+      </div>
+    </div>
+    <div class="navOptions">
+      <div class="colorMode">
+        <i class="far fa-sun fa-2x"></i>
+        <label class="switch">
+          <input type="checkbox" id="checkbox1" class="checkbox" checked="true">
+          <span class="slider"></span>
+        </label>
+        <i class="far fa-moon fa-2x"></i>
+      </div>
+      <div class="goChat"><a href="chat.html"><i class="far fa-paper-plane fa-2x"></i></a></div>
+
+      <div class="navAccount">
+        <i class="far fa-user"></i>
+        <a href="userProfile.html">&nbsp Nombre</a>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <section class="resultadosHeader">
+      <h1>Grupos o artistas de musica en (localidad)</h1>
+      <div class="headerMoreInfo">
+        <p>Fecha: dd/mm/yyyy</p>
+        <p>Genero: genero</p>
+        <p>Presupuesto: entre 200€ y 300€</p>
+      </div>
+
+    </section>
+    <section class="resultadosBody">
+      <div class="resultadosPerfiles">
+        <div class="perfil">
+          <img src="img/artistExample.jpg" alt="" srcset="">
+          <div class="perfilInfo">
+            <div class="perfilNombre">
+              <p>Nombre del grupo o artista</p>
+            </div>
+            <div class="perfilAtributos">
+              <p>Genero: Genero musical</p>
+              <p>Localidad: Localidad</p>
+              <p>Presupuesto: 200€</p>
+            </div>
+            <div class="perfilStarsYBoton">
+              <div class="rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <p class="ratingKop">(23)</p>
+              </div>
+              <div class="bottomButon"><i class="fab fa-spotify"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="perfil">
+          <img src="img/artistExample.jpg" alt="" srcset="">
+          <div class="perfilInfo">
+            <div class="perfilNombre">
+              <p>Nombre del grupo o artista</p>
+            </div>
+            <div class="perfilAtributos">
+              <p>Genero: Genero musical</p>
+              <p>Localidad: Localidad</p>
+              <p>Presupuesto: 200€</p>
+            </div>
+            <div class="perfilStarsYBoton">
+              <div class="rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <p class="ratingKop">(23)</p>
+              </div>
+              <div class="bottomButon"><i class="fab fa-spotify"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="perfil">
+          <img src="img/artistExample.jpg" alt="" srcset="">
+          <div class="perfilInfo">
+            <div class="perfilNombre">
+              <p>Nombre del grupo o artista</p>
+            </div>
+            <div class="perfilAtributos">
+              <p>Genero: Genero musical</p>
+              <p>Localidad: Localidad</p>
+              <p>Presupuesto: 200€</p>
+            </div>
+            <div class="perfilStarsYBoton">
+              <div class="rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <p class="ratingKop">(23)</p>
+              </div>
+              <div class="bottomButon"><i class="fab fa-spotify"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="perfil">
+          <img src="img/artistExample.jpg" alt="" srcset="">
+          <div class="perfilInfo">
+            <div class="perfilNombre">
+              <p>Nombre del grupo o artista</p>
+            </div>
+            <div class="perfilAtributos">
+              <p>Genero: Genero musical</p>
+              <p>Localidad: Localidad</p>
+              <p>Presupuesto: 200€</p>
+            </div>
+            <div class="perfilStarsYBoton">
+              <div class="rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <p class="ratingKop">(23)</p>
+              </div>
+              <div class="bottomButon"><i class="fab fa-spotify"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="perfil">
+          <img src="img/artistExample.jpg" alt="" srcset="">
+          <div class="perfilInfo">
+            <div class="perfilNombre">
+              <p>Nombre del grupo o artista</p>
+            </div>
+            <div class="perfilAtributos">
+              <p>Genero: Genero musical</p>
+              <p>Localidad: Localidad</p>
+              <p>Presupuesto: 200€</p>
+            </div>
+            <div class="perfilStarsYBoton">
+              <div class="rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <p class="ratingKop">(23)</p>
+              </div>
+              <div class="bottomButon"><i class="fab fa-spotify"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="perfil">
+          <img src="img/artistExample.jpg" alt="" srcset="">
+          <div class="perfilInfo">
+            <div class="perfilNombre">
+              <p>Nombre del grupo o artista</p>
+            </div>
+            <div class="perfilAtributos">
+              <p>Genero: Genero musical</p>
+              <p>Localidad: Localidad</p>
+              <p>Presupuesto: 200€</p>
+            </div>
+            <div class="perfilStarsYBoton">
+              <div class="rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <p class="ratingKop">(23)</p>
+              </div>
+              <div class="bottomButon"><i class="fab fa-spotify"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="map"></div>
+    </section>
+  </main>
+  <footer>
+    <p>©GRUPO 5. TODOS LOS DERECHOS RESERVADOS</p>
+  </footer>
+</body>
+<script src="js/colorMode.js"></script>
+<script>
+  /*
+    var locationForm = document.querySelector('.buscar');*/
+  var lat = 0;
+  var lng = 0;
+  /*locationForm.addEventListener('click', geocode);
+  var input = document.getElementById("buscar");
+  input.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      locationForm.click();
+    }
+  });*/
+  var map = L.map('map').setView([lat, lng], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+  L.marker([51.5, -0.09]).addTo(map)
+    .bindPopup('22€');
+  L.marker([54, -0.09]).addTo(map)
+    .bindPopup('32€');
+  L.marker([55, -0.09]).addTo(map)
+    .bindPopup('12111€');
+
+
+  function geocode(e) {
+    e.preventDefault();
+
+    var location = document.getElementById('buscar').value;
+
+    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+      params: {
+        address: location,
+        key: 'AIzaSyAmdt5YDSe9LUXfw4SZh8QUtGbOHCDfLNU'
+      }
+    })
+      .then(function (response) {
+
+        var lat = response.data.results[0].geometry.location.lat;
+        var lng = response.data.results[0].geometry.location.lng;
+        map.setView(new L.LatLng(lat, lng), 13);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+
+
+</script>
+<script src="js/buscar.js"></script>
+
+</html>

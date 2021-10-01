@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <link th:href="@{/css/global.css}" rel="stylesheet" />
+  <link th:href="@{/css/index.css}" rel="stylesheet" />
+  <link th:href="@{/css/login.css}" rel="stylesheet" />
+  <link th:href="@{/css/signup.css}" rel="stylesheet" />
+  <link th:href="@{/css/device.css}" rel="stylesheet" />
+  <title>Mudley</title>
+</head>
+
+<body>
+  <nav th:replace="fragments/nav :: nav"></nav>
+  <main>
+    <section class="login">
+      <div class="loginTitle">
+        <p>CREAR CUENTA</p>
+      </div>
+      <form th:action="@{/registration}" method="post" th:object="${user}" class="loginForm">
+        <div class="loginInputs">
+          <div class="loginInput user">
+            <input type="text" placeholder="Nombre del grupo/artista o asociacion" id="nombre" autocomplete="off"
+              th:field="*{name}" required>
+          </div>
+          <div class="loginInput mail">
+            <input type="email" placeholder="Correo electrónico" id="email" th:field="*{email}" autocomplete="off"
+              required>
+          </div>
+          <div class="loginInput pass">
+            <input type="password" placeholder="Contraseña" id="pass" th:field="*{password}" autocomplete="off"
+              required>
+          </div>
+          <div class="loginInput pass">
+            <input type="password" placeholder="Repetir contraseña" id="rpass" required>
+          </div>
+          <div class="select">
+            <label class="check">Soy un grupo o artista musical
+              <input type="checkbox" class="fooby[1][]" id="grupoCheck" th:field="*{artista}"></label>
+            <label class="check">Soy una asociacion
+              <input type="checkbox" class="fooby[1][]" id="asociacionCheck" th:field="*{organizacion}"></label>
+          </div>
+          <div class="loginInput desc">
+            <textarea placeholder="Descripción" id="desc" th:field="*{description}" autocomplete="off"
+              required></textarea>
+          </div>
+          <div class="ubicacion">
+            <div class="loginInput pais">
+              <input type="text" placeholder="Pais" name="pais" id="pais" autocomplete="off" th:field="*{country}"
+                required>
+            </div>
+            <div class="loginInput localidad">
+              <input type="text" placeholder="Localidad" name="localidad" autocomplete="off" id="localidad"
+                th:field="*{city}" required>
+            </div>
+            <div class="loginInput cv">
+              <input type="number" placeholder="Codigo Postal" name="cv" autocomplete="off" id="cv" th:field="*{cv}"
+                required>
+            </div>
+          </div>
+          <div class="groupAddData">
+            <div class="pGenero">
+              <select name="genero" placeholder="Genero" id="pGenero" th:field="*{genderId}" required>
+                <option value="0" selected> Genero</option>
+                <option th:each="genero : ${generos}" th:value="${genero.id}" th:text="${genero.name}"></option>
+              </select>
+            </div>
+            <div class="loginInput presupuesto">
+              <input type="number" placeholder="Presupuesto" name="presupuesto" autocomplete="off" id="presupuesto">
+            </div>
+            <div class="loginInput url">
+              <input type="url" placeholder="URL prefil de spotify" autocomplete="off" name="url" id="url">
+            </div>
+          </div>
+        </div>
+        <div class="confirm">
+          <div class="loginBtn">
+            <input type="submit" value="Crear cuenta" />
+          </div>
+        </div>
+      </form>
+      <div class="loginSocial">
+        <div class="social"><i class="fab fa-google fa-4x"></i></div>
+        <div class="social"><i class="fab fa-instagram fa-4x"></i></div>
+        <div class="social facebook"><i class="fab fa-facebook-f fa-4x"></i></div>
+        <div class="social"><i class="fab fa-twitter fa-4x"></i></div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>©GRUPO 5. TODOS LOS DERECHOS RESERVADOS</p>
+  </footer>
+</body>
+<script src="js/colorMode.js"></script>
+<script src="js/registration.js"></script>
+
+</html>

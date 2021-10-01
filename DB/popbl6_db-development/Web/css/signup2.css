@@ -1,0 +1,68 @@
+.loginInputs {
+  grid-template-rows: 40% 30% 30%;
+}
+.loginForm {
+  grid-template-rows: 80% 1fr;
+}
+.loginTitle {
+  align-self: auto;
+}
+.ubicacion {
+  display: flex;
+  flex-direction: row;
+}
+#desc {
+  width: 100%;
+}
+
+.ubicacion input {
+  width: 90%;
+}
+
+.pais,
+.cv,
+.localidad,
+.url,
+.desc {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: flex-end;
+}
+
+.cv {
+  justify-content: flex-end;
+}
+
+.groupAddData {
+  display: grid;
+  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: 30% 70%;
+}
+
+.presupuesto {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+#presupuesto {
+  width: 90%;
+}
+
+#url {
+  width: 100%;
+}
+
+#desc {
+  height: 100%;
+  background: none;
+  border: 0;
+  font-size: 2rem;
+  color: var(--textColor);
+  user-select: none;
+  border-bottom: 2px solid var(--borderColor);
+  resize: none;
+  font-family: "Poppins", sans-serif;
+}

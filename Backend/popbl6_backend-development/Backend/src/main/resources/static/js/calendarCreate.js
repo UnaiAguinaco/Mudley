@@ -1,0 +1,249 @@
+var fechas = document.querySelector(".fechas").innerHTML;
+fechas=fechas.substring(0, fechas.length - 1);
+fechas =fechas.substring(1);
+var fechasReservadas=[];
+if(fechas!=""){
+fechasReservadas=fechas.split(", ");
+}
+for (let index = 0; index < fechasReservadas.length; index++) {
+  var str = fechasReservadas[index].split(" ")[0];
+  if (str.length==1) {
+    fechasReservadas[index]="0"+fechasReservadas[index];
+  }
+
+}
+
+!function() {
+
+  var today = moment();
+   
+
+  function Calendar(selector) {
+    this.el = document.querySelector(selector);
+    this.current = moment().date(1);
+    this.draw();
+  }
+
+  Calendar.prototype.draw = function() {
+    //Create Header
+    this.drawHeader();
+
+    //Draw Month
+    this.drawMonth();
+
+  }
+
+  Calendar.prototype.drawHeader = function() {
+    var self = this;
+    if(!this.header) {
+      //Create the header elements
+      this.header = createElement('div', 'header');
+      this.header.className = 'header';
+
+      this.title = createElement('h1');
+
+      var right = createElement('div', 'right');
+      right.addEventListener('click', function() { self.nextMonth(); });
+
+      var left = createElement('div', 'left');
+      left.addEventListener('click', function() { self.prevMonth(); });
+
+      //Append the Elements
+      this.header.appendChild(left);
+      this.header.appendChild(this.title); 
+      this.header.appendChild(right);
+      this.el.appendChild(this.header);
+    }
+
+    this.title.innerHTML = this.current.format('MMMM YYYY');
+  }
+
+  Calendar.prototype.drawMonth = function() {
+    var self = this;
+    
+    
+    
+    
+    if(this.month) {
+      this.oldMonth = this.month;
+      this.oldMonth.className = 'month out ' + (self.next ? 'next' : 'prev');
+      this.oldMonth.addEventListener('webkitAnimationEnd', function() {
+        self.oldMonth.parentNode.removeChild(self.oldMonth);
+        self.month = createElement('div', 'month');
+        self.backFill();
+        self.currentMonth();
+        self.fowardFill();
+        self.el.appendChild(self.month);
+        window.setTimeout(function() {
+          self.month.className = 'month in ' + (self.next ? 'next' : 'prev');
+        }, 16);
+      });
+    } else {
+        this.month = createElement('div', 'month');
+        this.el.appendChild(this.month);
+        this.backFill();
+        this.currentMonth();
+        this.fowardFill();
+        this.month.className = 'month new';
+    }
+  }
+
+  Calendar.prototype.backFill = function() {
+    var clone = this.current.clone();
+    var dayOfWeek = clone.day();
+
+    if(!dayOfWeek) { return; }
+
+    clone.subtract('days', dayOfWeek+1);
+
+    for(var i = dayOfWeek; i > 0 ; i--) {
+      this.drawDay(clone.add('days', 1));
+    }
+  }
+
+  Calendar.prototype.fowardFill = function() {
+    var clone = this.current.clone().add('months', 1).subtract('days', 1);
+    var dayOfWeek = clone.day();
+
+    if(dayOfWeek === 6) { return; }
+
+    for(var i = dayOfWeek; i < 6 ; i++) {
+      this.drawDay(clone.add('days', 1));
+    }
+  }
+
+  Calendar.prototype.currentMonth = function() {
+    var clone = this.current.clone();
+
+    while(clone.month() === this.current.month()) {
+      this.drawDay(clone);
+      clone.add('days', 1);
+    }
+  }
+
+  Calendar.prototype.getWeek = function(day) {
+    if(!this.week || day.day() === 0) {
+      this.week = createElement('div', 'week');
+      this.month.appendChild(this.week);
+    }
+  }
+
+  Calendar.prototype.drawDay = function(day) {
+    var self = this;
+    this.getWeek(day);
+
+    //Outer Day
+    var outer = createElement('div', this.getDayClass(day));
+    outer.addEventListener("click", function() {
+       outer.classList.toggle("selected");
+       eventListenerSave(outer);
+  });
+    
+    //Day Name
+    var name = createElement('div', 'day-name', day.format('ddd'));
+
+    //Day Number
+    var number = createElement('div', 'day-number', day.format('DD'));
+
+
+    
+    outer.appendChild(name);
+    outer.appendChild(number);
+    if (checkSelected(outer)) {
+      outer.classList.add("selected");
+    }
+    this.week.appendChild(outer);
+  }
+
+  
+
+  Calendar.prototype.getDayClass = function(day) {
+    classes = ['day'];
+    if(day.month() !== this.current.month()) {
+      classes.push('otherMonth');
+    } else if (today.isSame(day, 'day')) {
+      classes.push('today');
+    }
+    return classes.join(' ');
+  }
+
+
+  
+  Calendar.prototype.nextMonth = function() {
+    this.current.add('months', 1);
+    this.next = true;
+    this.draw();
+  }
+
+  Calendar.prototype.prevMonth = function() {
+    this.current.subtract('months', 1);
+    this.next = false;
+    this.draw();
+  }
+
+  window.Calendar = Calendar;
+
+  function createElement(tagName, className, innerText) {
+    var ele = document.createElement(tagName);
+    if(className) {
+      ele.className = className;
+    }
+    if(innerText) {
+      ele.innderText = ele.textContent = innerText;
+    }
+    return ele;
+  }
+  
+
+function eventListenerSave(e) {
+  if (!e.classList.contains("otherMonth")) {
+    var day = e.getElementsByClassName("day-number")[0].innerText;
+    var monthYear=document.querySelector(".header>h1").innerHTML;
+    var date = day+" "+monthYear;
+    if (!fechasReservadas.includes(date)) {
+      fechasReservadas.push(date);
+    }else if (fechasReservadas.includes(date)) {
+      const index = fechasReservadas.indexOf(date);
+      if (index > -1) {
+        fechasReservadas.splice(index, 1);
+      }
+    }
+    console.log(fechasReservadas);
+  }
+}
+function checkSelected(e) {
+  if (!e.classList.contains("otherMonth")) {
+    var day = e.getElementsByClassName("day-number")[0].innerText;
+    var monthYear=document.querySelector(".header>h1").innerHTML;
+    var date = day+" "+monthYear;
+     if (fechasReservadas.includes(date)) {
+      return true;
+    }
+  }
+  return false;
+}
+}();
+
+!function() {
+ 
+  var calendar = new Calendar('#calendar');
+}();
+
+var save = document.querySelector(".calendarSave>p").addEventListener("click", function() {
+  var fechasStr="";
+       fechasReservadas.forEach(element => {
+         element=element.split(" ", 4);
+         fechasStr+=element[0]+"-"+element[1]+"-"+element[2]+"&";
+           
+       });
+  fechasStr=fechasStr.substring(0, fechasStr.length - 1);
+  console.log(fechasStr);
+  if (fechasStr=="") {
+    fechasStr="deleteAll";
+  }
+  var url = "/guardarFechas"+ fechasStr;
+  $('.calendarSaved').empty();
+  $('.calendarSaved').load(url);
+  });
+
+

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <link rel="shortcut icon" href="img/logoOscuro.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+  <link th:href="@{/css/global.css}" rel="stylesheet" />
+  <link th:href="@{/css/index.css}" rel="stylesheet" />
+  <link th:href="@{/css/mainMenu.css}" rel="stylesheet" />
+  <link th:href="@{/css/chat.css}" rel="stylesheet" />
+  <link th:href="@{/css/propositionPopUp.css}" rel="stylesheet" />
+  <link th:href="@{/css/device.css}" rel="stylesheet" />
+
+  <title>Mudley</title>
+</head>
+
+<body>
+  <nav th:replace="fragments/navLogged :: navLogged"></nav>
+  <main>
+    <section class="chats">
+      <div class="chatsHeader">
+        <p>Chats</p>
+      </div>
+      <div class="todosLosChats">
+        <a sec:authorize="hasAuthority('ARTISTA')" th:class="'chat '+${chats[chatStat.index].id}"
+          th:each="chat,chatStat : ${chats}">
+          <div class="chatImg"><img th:src="${chat.userId.image}" alt="" srcset=""></div>
+          <div class="chatData">
+            <div class="chatNombreYUltMsg">
+              <div class="chatNombre">
+                <p class="nombre" th:text="${chat.userId.name}">Nombre de artista</p>
+                <div class="msgSinLeer" th:classappend="${sinLeer[chatStat.index]==0} ? hide">
+                  <p th:text="${sinLeer[chatStat.index]}">0</p>
+                </div>
+              </div>
+              <div class="UltMsg">
+                <p th:text="${lastMsg[chatStat.index].text}">Ultimo mensaje</p>
+                <p>&nbsp - &nbsp</p>
+                <p th:text="${{lastMsg[chatStat.index].squedule}}">dd/mm/yyyy - hh:mm</p>
+              </div>
+            </div>
+          </div>
+        </a>
+        <a sec:authorize="hasAuthority('ORGANIZACION')" th:class="'chat '+${chats[otherStat.index].id}"
+          th:each="otherUser,otherStat : ${otherUsers}">
+          <div class="chatImg"><img th:src="${otherUser.image}" alt="" srcset=""></div>
+          <div class="chatData">
+            <div class="chatNombreYUltMsg">
+              <div class="chatNombre">
+                <p class="nombre" th:text="${otherUser.name}">Nombre de artista</p>
+                <div class="msgSinLeer" th:classappend="${sinLeer[otherStat.index]==0} ? hide">
+                  <p th:text="${sinLeer[otherStat.index]}">0</p>
+                </div>
+              </div>
+              <div class="UltMsg">
+                <p th:text="${lastMsg[otherStat.index].text}">Ultimo mensaje</p>
+                <p>&nbsp - &nbsp</p>
+                <p th:text="${{lastMsg[otherStat.index].squedule}}">dd/mm/yyyy - hh:mm</p>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+    <section class="chatAbierto hide">
+      <div class="chatAbiertoHeader">
+        <p class="nombreChatAbierto">Nombre de artista</p>
+        <i class="fas fa-times cerrar"></i>
+      </div>
+      <div class="chatAbiertoBody">
+        <style sec:authorize="hasAuthority('ARTISTA')">
+          .chatAbiertoMensajes {
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            max-height: 60vh;
+            padding-right: 1rem;
+          }
+
+          .chatAbiertoBody {
+            display: grid;
+            grid-template-rows: 1fr 10%;
+            grid-template-columns: 1fr;
+            grid-row-gap: 2rem;
+            padding: 0 2rem;
+          }
+        </style>
+        <a class="contatar" sec:authorize="hasAuthority('ORGANIZACION')">
+          <p>Proponer concierto</p><i class="fas fa-comment-alt"></i>
+        </a>
+        <div class="chatAbiertoMensajes" th:fragment="mensajes">
+          <div class="mensaje" th:classappend="${thisUserId==msg.userId.id} ? enviado " th:each="msg : ${mensajes}">
+            <div th:if="${msg.proposition}" class="txt pDiv">
+              <p th:class="'prop '+${msg.id}" th:text="${msg.text}"></p>
+              <i th:if="${msg.acepted=='noAns'}" class="accept fas fa-check-square"
+                th:classappend="${thisUserId!=msg.userId.id} ? clickalble"></i>
+              <i th:if="${msg.acepted=='noAns'}" class="deny fas fa-window-close"
+                th:classappend="${thisUserId!=msg.userId.id} ? clickalble"></i>
+              <i th:if="${msg.acepted=='accept'}" class="accept fas fa-check-square"></i>
+              <i th:if="${msg.acepted=='deny'}" class="deny fas fa-window-close"></i>
+            </div>
+            <p th:unless="${msg.proposition}" th:text="${msg.text}" class="txt">hola dani</p>
+            <p th:text="${{msg.squedule}}" class="date">hh:mm</p>
+
+          </div>
+        </div>
+        <div class="chatAbiertoEscribir">
+          <input type="text" name="" id="escribir">
+          <div class="enviar">
+            <p>Enviar</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <section class="chatCerrado">
+      <div>
+        <i class="far fa-comments"></i>
+        <p>Elige un chat para comenzar a chatear</p>
+      </div>
+
+    </section>
+  </main>
+  <footer>
+    <p>©GRUPO 5. TODOS LOS DERECHOS RESERVADOS</p>
+  </footer>
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="propositionForm">
+        <label class="fecha" for="">Fecha del concierto:<input type="date" name="" id="proposition"> </label>
+        <p id="sendProposition">Enviar</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+<script src="js/colorMode.js"></script>
+<script src="js/chat.js"></script>
+<script sec:authorize="hasAuthority('ORGANIZACION')" src="js/showProposition.js"></script>
+
+</html>

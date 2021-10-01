@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+  <link th:href="@{/css/global.css}" rel="stylesheet" />
+  <link th:href="@{/css/index.css}" rel="stylesheet" />
+  <link th:href="@{/css/mainMenu.css}" rel="stylesheet" />
+  <link th:href="@{/css/resultados.css}" rel="stylesheet" />
+  <link th:href="@{/css/device.css}" rel="stylesheet" />
+
+  <title>Mudley</title>
+</head>
+
+<body>
+  <nav th:replace="fragments/navLogged :: navLogged"></nav>
+  <main>
+    <section class="resultadosHeader">
+      <h1 id="location" th:class="${busqueda.city}" th:text="${'Grupos o artistas de musica en ' + busqueda.city}">
+        Grupos o artistas
+        de musica en (localidad)</h1>
+      <div class="headerMoreInfo">
+        <p th:text="${'Fecha: ' + busqueda.fecha}">Fecha: dd/mm/yyyy</p>
+        <p th:text="${'Genero: ' + busqueda.genderName}">Genero: genero</p>
+        <p th:text="${'Presupuesto: Entre ' + busqueda.min + '€ y '+ busqueda.max+'€'}">Presupuesto: entre 200€ y 300€
+        </p>
+      </div>
+
+    </section>
+    <section class="resultadosBody">
+      <div class="resultadosPerfiles">
+
+        <div class="perfil" th:each="artista : ${artistas}">
+          <a th:href="@{'/resultado'+${artista.id}}"><img th:src="${artista.image}" alt="" srcset=""></a>
+          <div class="perfilInfo">
+            <div class="perfilNombre">
+              <a th:href="@{'/resultado'+${artista.id}}" th:text="${artista.name}">Nombre del grupo o artista</a>
+            </div>
+            <div class="perfilAtributos">
+              <a th:href="@{'/resultado'+${artista.id}}" th:text="${'Genero: ' + artista.genderId.name}">Genero:
+                Genero
+                musical</a>
+              <a th:href="@{'/resultado'+${artista.id}}"
+                th:text="${'Localidad: ' + artista.city + ', '+artista.country}">Localidad:
+                Localidad</a>
+              <a th:href="@{'/resultado'+${artista.id}}"
+                th:text="${'Presupuesto: ' + artista.budget + '€'}">Presupuesto:
+                xxxx€</a>
+            </div>
+            <div class="perfilStarsYBoton">
+              <div class="rating">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <p class="ratingKop">(23)</p>
+              </div>
+              <a th:href="${artista.link}" target="_blank">
+                <div class="bottomButon"><i class="fab fa-spotify"></i></div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div id="map"></div>
+    </section>
+  </main>
+  <footer>
+    <p>©GRUPO 5. TODOS LOS DERECHOS RESERVADOS</p>
+  </footer>
+</body>
+<script src="js/colorMode.js"></script>
+<script>
+
+  var lat = 0;
+  var lng = 0;
+  geocode();
+  var map = L.map('map').setView([lat, lng], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+  L.marker([51.5, -0.09]).addTo(map)
+    .bindPopup('22€');
+  L.marker([54, -0.09]).addTo(map)
+    .bindPopup('32€');
+  L.marker([55, -0.09]).addTo(map)
+    .bindPopup('12111€');
+
+
+  function geocode(e) {
+    //e.preventDefault();
+
+    //var location = document.getElementById('buscar').value;
+    var location = document.getElementById('location');
+    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+      params: {
+        address: location.className,
+        key: 'AIzaSyBAvqd6iVi-Nq7KnAZfGsJbqpgzztKm_V8'
+      }
+    })
+      .then(function (response) {
+
+        var lat = response.data.results[0].geometry.location.lat;
+        var lng = response.data.results[0].geometry.location.lng;
+        map.setView(new L.LatLng(lat, lng), 13);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+
+
+</script>
+<script src="js/buscar.js"></script>
+
+</html>

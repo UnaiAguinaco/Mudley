@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2021-06-11T06:44:47Z</date>
+    <groups>
+        <group>
+            <name>Linux servers</name>
+        </group>
+        <group>
+            <name>Zabbix servers</name>
+        </group>
+    </groups>
+    <hosts>
+        <host>
+            <host>DataBase</host>
+            <name>DataBase</name>
+            <templates>
+                <template>
+                    <name>Template App Zabbix Server</name>
+                </template>
+                <template>
+                    <name>Template OS Linux by Zabbix agent</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>Linux servers</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <useip>NO</useip>
+                    <ip/>
+                    <dns>mudleydb.duckdns.org</dns>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IA</host>
+            <name>IA</name>
+            <templates>
+                <template>
+                    <name>Template App Zabbix Server</name>
+                </template>
+                <template>
+                    <name>Template OS Linux by Zabbix agent</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>Linux servers</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <useip>NO</useip>
+                    <dns>mudleyia.duckdns.org</dns>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>Main</host>
+            <name>Main</name>
+            <templates>
+                <template>
+                    <name>Template App Zabbix Server</name>
+                </template>
+                <template>
+                    <name>Template OS Linux by Zabbix agent</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>Linux servers</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <useip>NO</useip>
+                    <dns>mudley.duckdns.org</dns>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>Zabbix server</host>
+            <name>Zabbix server</name>
+            <templates>
+                <template>
+                    <name>Template App Zabbix Server</name>
+                </template>
+                <template>
+                    <name>Template OS Linux by Zabbix agent</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>Zabbix servers</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+    </hosts>
+</zabbix_export>

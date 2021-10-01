@@ -1,0 +1,366 @@
+.calendarHeader {
+  font-size: 2rem;
+  color: var(--textColor);
+}
+.calendarHeader .info {
+  padding-left: 1rem;
+  font-size: 1.5rem;
+  color: gray;
+}
+.calendarContainer {
+  display: flex;
+  justify-content: center;
+}
+#calendar {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10% 1fr;
+  overflow: hidden;
+  color: white;
+}
+
+.header {
+  background: var(--secondaryColor);
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  z-index: 100;
+  color: white;
+}
+
+.header h1 {
+  font-size: 3rem;
+  font-weight: 100;
+}
+
+.left,
+.right {
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  cursor: pointer;
+}
+
+.left {
+  border-width: 7.5px 10px 7.5px 0;
+  border-color: transparent white transparent transparent;
+}
+
+.right {
+  border-width: 7.5px 0 7.5px 10px;
+  border-color: transparent transparent transparent white;
+}
+
+.month {
+  opacity: 0;
+}
+
+.month.new {
+  -webkit-animation: fadeIn 1s ease-out;
+  opacity: 1;
+}
+
+.month.in.next {
+  -webkit-animation: moveFromTopFadeMonth 0.4s ease-out;
+  -moz-animation: moveFromTopFadeMonth 0.4s ease-out;
+  animation: moveFromTopFadeMonth 0.4s ease-out;
+  opacity: 1;
+}
+
+.month.out.next {
+  -webkit-animation: moveToTopFadeMonth 0.4s ease-in;
+  -moz-animation: moveToTopFadeMonth 0.4s ease-in;
+  animation: moveToTopFadeMonth 0.4s ease-in;
+  opacity: 1;
+}
+
+.month.in.prev {
+  -webkit-animation: moveFromBottomFadeMonth 0.4s ease-out;
+  -moz-animation: moveFromBottomFadeMonth 0.4s ease-out;
+  animation: moveFromBottomFadeMonth 0.4s ease-out;
+  opacity: 1;
+}
+
+.month.out.prev {
+  -webkit-animation: moveToBottomFadeMonth 0.4s ease-in;
+  -moz-animation: moveToBottomFadeMonth 0.4s ease-in;
+  animation: moveToBottomFadeMonth 0.4s ease-in;
+  opacity: 1;
+}
+
+.week {
+  background: #3f3d63;
+}
+
+.day {
+  display: inline-block;
+  width: 60px;
+  padding: 10px;
+  text-align: center;
+  vertical-align: top;
+  cursor: pointer;
+  background: #3f3d63;
+  position: relative;
+  z-index: 100;
+}
+
+.day.otherMonth {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.day.today {
+  color: rgba(156, 202, 235, 1);
+}
+
+.day-name {
+  font-size: 9px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.7px;
+}
+
+.day-number {
+  font-size: 24px;
+  letter-spacing: 1.5px;
+}
+
+.details {
+  position: relative;
+  width: 420px;
+  height: 75px;
+  background: rgba(164, 164, 164, 1);
+  margin-top: 5px;
+  border-radius: 4px;
+}
+
+.details.in {
+  -webkit-animation: moveFromTopFade 0.5s ease both;
+  -moz-animation: moveFromTopFade 0.5s ease both;
+  animation: moveFromTopFade 0.5s ease both;
+}
+
+.details.out {
+  -webkit-animation: moveToTopFade 0.5s ease both;
+  -moz-animation: moveToTopFade 0.5s ease both;
+  animation: moveToTopFade 0.5s ease both;
+}
+
+.arrow {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  margin-left: -2px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 5px 5px 5px;
+  border-color: transparent transparent rgba(164, 164, 164, 1) transparent;
+  transition: all 0.7s ease;
+}
+
+.entry {
+  position: relative;
+  padding: 0 0 0 25px;
+  font-size: 13px;
+  display: inline-block;
+  line-height: 30px;
+  background: transparent;
+}
+
+.entry:after {
+  position: absolute;
+  content: "";
+  height: 5px;
+  width: 5px;
+  top: 12px;
+  left: 14px;
+}
+
+/* Animations are cool!  */
+@-webkit-keyframes moveFromTopFade {
+  from {
+    opacity: 0.3;
+    height: 0px;
+    margin-top: 0px;
+    -webkit-transform: translateY(-100%);
+  }
+}
+@-moz-keyframes moveFromTopFade {
+  from {
+    height: 0px;
+    margin-top: 0px;
+    -moz-transform: translateY(-100%);
+  }
+}
+@keyframes moveFromTopFade {
+  from {
+    height: 0px;
+    margin-top: 0px;
+    transform: translateY(-100%);
+  }
+}
+
+@-webkit-keyframes moveToTopFade {
+  to {
+    opacity: 0.3;
+    height: 0px;
+    margin-top: 0px;
+    opacity: 0.3;
+    -webkit-transform: translateY(-100%);
+  }
+}
+@-moz-keyframes moveToTopFade {
+  to {
+    height: 0px;
+    -moz-transform: translateY(-100%);
+  }
+}
+@keyframes moveToTopFade {
+  to {
+    height: 0px;
+    transform: translateY(-100%);
+  }
+}
+
+@-webkit-keyframes moveToTopFadeMonth {
+  to {
+    opacity: 0;
+    -webkit-transform: translateY(-30%) scale(0.95);
+  }
+}
+@-moz-keyframes moveToTopFadeMonth {
+  to {
+    opacity: 0;
+    -moz-transform: translateY(-30%);
+  }
+}
+@keyframes moveToTopFadeMonth {
+  to {
+    opacity: 0;
+    -moz-transform: translateY(-30%);
+  }
+}
+
+@-webkit-keyframes moveFromTopFadeMonth {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(30%) scale(0.95);
+  }
+}
+@-moz-keyframes moveFromTopFadeMonth {
+  from {
+    opacity: 0;
+    -moz-transform: translateY(30%);
+  }
+}
+@keyframes moveFromTopFadeMonth {
+  from {
+    opacity: 0;
+    -moz-transform: translateY(30%);
+  }
+}
+
+@-webkit-keyframes moveToBottomFadeMonth {
+  to {
+    opacity: 0;
+    -webkit-transform: translateY(30%) scale(0.95);
+  }
+}
+@-moz-keyframes moveToBottomFadeMonth {
+  to {
+    opacity: 0;
+    -webkit-transform: translateY(30%);
+  }
+}
+@keyframes moveToBottomFadeMonth {
+  to {
+    opacity: 0;
+    -webkit-transform: translateY(30%);
+  }
+}
+
+@-webkit-keyframes moveFromBottomFadeMonth {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-30%) scale(0.95);
+  }
+}
+@-moz-keyframes moveFromBottomFadeMonth {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-30%);
+  }
+}
+@keyframes moveFromBottomFadeMonth {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-30%);
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+@-moz-keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeOutShink {
+  to {
+    opacity: 0;
+    padding: 0px;
+    height: 0px;
+  }
+}
+@-moz-keyframes fadeOutShink {
+  to {
+    opacity: 0;
+    padding: 0px;
+    height: 0px;
+  }
+}
+@keyframes fadeOutShink {
+  to {
+    opacity: 0;
+    padding: 0px;
+    height: 0px;
+  }
+}
+@media (max-width: 500px) {
+  .day {
+    width: 40px;
+  }
+  .day-number {
+    font-size: 16px;
+  }
+}

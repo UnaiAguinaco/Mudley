@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <link th:href="@{/css/global.css}" rel="stylesheet" />
+  <link th:href="@{/css/index.css}" rel="stylesheet" />
+  <link th:href="@{/css/mainMenu.css}" rel="stylesheet" />
+  <link th:href="@{/css/device.css}" rel="stylesheet" />
+
+  <title>Mudley</title>
+</head>
+
+<body>
+  <section class="mainArriba">
+    <nav th:replace="fragments/navLogged :: navLogged"></nav>
+    <main>
+      <section class="title">
+        <h1>MUDLEY</h1>
+        <form id="buscadorContainer" class="buscadorContainer" th:action="@{/buscar}" th:object="${busqueda}"
+          method="post">
+          <div class="buscadorMain">
+            <div class="parametros">
+              <div class="pLocalidad">
+                <input type="text" placeholder="Localidad" name="" id="pLocalidad" th:field="*{city}" required>
+              </div>
+              <div class="pFecha">
+                <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Fecha" name=""
+                  id="pFecha" th:field="*{fecha}" required>
+              </div>
+              <div class="pGenero">
+                <select name="genero" placeholder="Genero" id="pGenero" th:field="*{gender}" required>
+                  <option value="0" selected> Genero</option>
+                  <option th:each="genero : ${generos}" th:value="${genero.id}" th:text="${genero.name}"></option>
+
+                </select>
+              </div>
+              <div class="pPersupuesto">
+                <input type="text" placeholder="Presupuesto" name="" id="pPersupuesto" th:field="*{min}" required>
+                <input style="display: none;" type="text" placeholder="Presupuesto" name="" id="" th:field="*{max}">
+              </div>
+              <div class="buscar" onclick="submitForm()">
+                <i class="fas fa-search fa-2x"></i>
+              </div>
+            </div>
+
+          </div>
+        </form>
+
+      </section>
+    </main>
+    <footer>
+      <a href="#mainArtistas"><i class="fas fa-chevron-down fa-4x abajo"></i></a>
+    </footer>
+  </section>
+  <section id="mainArtistas">
+    <section class="artistasData">
+      <section class="emergentes contentGroup">
+        <div class="header">
+          <p class="headerTitle">Descubre artistas o grupos emergentes</p>
+          <div class="contentMove">
+            <i id="prev" class="fas fa-chevron-left"></i>
+            <i id="next" class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+        <div class="contents 1">
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content hide"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content hide"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content hide"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content hide"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content hide"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content hide"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content hide"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content hide"><img src="img/artistExample.jpg" alt=""></div>
+        </div>
+      </section>
+      <section class="recomendados">
+        <div class="header">
+          <p class="headerTitle">Hecho para ti</p>
+          <div class="contentMove">
+            <i class="fas fa-chevron-left"></i>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+        <div class="contents">
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+        </div>
+      </section>
+      <section class="visitados">
+        <div class="header">
+          <p class="headerTitle">Vuelve a ...</p>
+          <div class="contentMove">
+            <i class="fas fa-chevron-left"></i>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+        <div class="contents">
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+        </div>
+      </section>
+      <section class="generos">
+        <div class="header">
+          <p class="headerTitle">Descubre nuevos géneros de música</p>
+          <div class="contentMove">
+            <i class="fas fa-chevron-left"></i>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+        <div class="contents">
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+          <div class="content"><img src="img/artistExample.jpg" alt=""></div>
+        </div>
+      </section>
+    </section>
+    <footer>
+      <p>©GRUPO 5. TODOS LOS DERECHOS RESERVADOS</p>
+    </footer>
+  </section>
+</body>
+<script src="js/colorMode.js"></script>
+<script src="js/carrusel.js"></script>
+<script src="js/buscar.js"></script>
+
+</html>
